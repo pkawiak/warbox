@@ -8,13 +8,21 @@ module.exports = function (grunt) {
                 jshintrc: true
             },
             all: ["src/**/*.js", "test/**/*.js"]
+        },
+        jasmine: {
+            pivotal: {
+                src: 'src/**/*.js',
+                options: {
+                    specs: 'test/spec/*Spec.js'
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
-    // Default task(s).
-    grunt.registerTask('ci', ['jshint']);
-    grunt.registerTask('default', 'ci');
+    grunt.registerTask('test', ['jshint', 'jasmine']);
+    grunt.registerTask('default', 'test');
 
 };
